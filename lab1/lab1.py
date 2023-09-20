@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import pandas as pd
 
-# Экспериментальные данные (длина волны, н.м.)
+# Экспериментальные данные (оптическая плотность)
 data = np.array([0.263, 0.481, 0.733, 0.849, 1.089])
 experiment = 0.331  # Экспериментальное значение
 
@@ -26,7 +26,7 @@ predicted_concentration = linear_model(experiment)
 plt.scatter(data, concentrations, label='Data Points')
 plt.plot(data, linear_model(data), label='Fitted Line', color='r')
 plt.scatter(experiment, predicted_concentration, color='g', label=f'Prediction ({predicted_concentration:.4f})')
-plt.xlabel('Wavelength (nm)')
+plt.xlabel('Optical Density')
 plt.ylabel('Concentrations (%)')
 plt.legend()
 plt.savefig('data.png', dpi=300)
@@ -34,7 +34,7 @@ plt.show()
 
 # Создание таблички с данными и прогнозом
 table = pd.DataFrame({
-    'Wavelength (nm)': np.append(data, experiment),
+    'Optical Density': np.append(data, experiment),
     'Concentrations (%)': np.append(concentrations, predicted_concentration)
 })
 table.to_csv('data.csv', index=False)
